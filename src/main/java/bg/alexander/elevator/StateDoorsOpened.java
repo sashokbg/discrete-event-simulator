@@ -7,7 +7,16 @@ public class StateDoorsOpened implements State {
 	private final Logger log = LogManager.getLogger(this.getClass());
 	
 	@Override
-	public void transition(Context context) {
+	public State transition(Context context) {
 		log.info("Door opened");
+		
+		State newState = new StateDoorsClosing();
+		context.setState(newState);
+		return newState;
+	}
+	
+	@Override
+	public String toString(){
+		return "State - Doors opened";
 	}
 }

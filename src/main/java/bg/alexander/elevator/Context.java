@@ -3,25 +3,36 @@ package bg.alexander.elevator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.simulator.Event;
+import bg.alexander.simulator.SimpleEvent;
+import bg.alexander.simulator.Simulator;
+
 public class Context {
 	private State state;
 	private final Logger log = LogManager.getLogger(this.getClass());
+	private Simulator simulator;
 	
-	public Context() {
+	public Context(Simulator simulator) {
 		//initial state is stopped, doors closed
 		this.state = new StateStopped();
+		this.simulator = simulator;
 	}
 
+	public void addEvent(Event e){
+		this.simulator.addEvent(e);
+	}
+	
 	public State getState() {
 		return state;
 	}
 
 	public void setState(State state) {
+		log.info(state);
 		this.state = state;
 	}
 	
-	public void pressButton(){
+	public State pressButton(){
 		log.info("Button pressed");
-		state.transition(this);
+		return state.transition(this);
 	}
 }

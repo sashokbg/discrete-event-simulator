@@ -1,5 +1,5 @@
 package bg.alexander.elevator;
 
 public interface State {
-	public void transition(Context context);
+	public State transition(Context context);
 }

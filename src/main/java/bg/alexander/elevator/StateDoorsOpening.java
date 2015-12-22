@@ -3,29 +3,22 @@ package bg.alexander.elevator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.simulator.SimpleEvent;
+
 public class StateDoorsOpening implements State{
 	private final Logger log = LogManager.getLogger(this.getClass());
-	private boolean inTransition;
 	
-	public StateDoorsOpening() {
-		inTransition = false;
+	@Override
+	public State transition(Context context) {
+		log.info("Doors opening ..");
+		State nextState = new StateDoorsClosing();
+		context.addEvent(new SimpleEvent("Doors opening"));
+		context.setState(nextState);
+		return nextState;
 	}
 	
 	@Override
-	public void transition(Context context) {
-		log.info("Doors opening ..");
-		State nextState = new StateDoorsOpened();
-		if(inTransition){
-			nextState = new StateDoorsClosing();
-		}
-		try {
-			inTransition = true;
-			Thread.sleep(3000);
-			inTransition = false;
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		context.setState(nextState);
-		nextState.transition(context);
+	public String toString(){
+		return "State - Doors opening";
 	}
 }
