@@ -5,6 +5,8 @@ public class Event {
 	private EventAction action;
 	private boolean isCanceled;
 	private String message;
+	private int scheduledTime;
+	private int executionTime;
 	
 	public Event() {
 		time = 0;
@@ -31,6 +33,12 @@ public class Event {
 		this.time = time;
 	}
 	
+	/**
+	 * In what time should the event be executed </br>
+	 * 
+	 * 0 means immediately
+	 * @return
+	 */
 	public int getTime() {
 		return time;
 	}
@@ -45,7 +53,9 @@ public class Event {
 	}
 	
 	public void takePlace(){
-		action.takePlace(time);
+		if(action!= null){
+			action.takePlace(time);
+		}
 	}
 	
 	public void setMessage(String message) {
@@ -59,5 +69,21 @@ public class Event {
 	@Override
 	public String toString(){
 		return "Event ["+time+"] "+message;
+	}
+
+	public void setScheduledTime(int scheduledTime) {
+		this.scheduledTime = scheduledTime;
+	}
+
+	public void setExecutionTime(int executionTime) {
+		this.executionTime = executionTime;
+	}
+	
+	public int getScheduledTime() {
+		return scheduledTime;
+	}
+
+	public int getExecutionTime() {
+		return executionTime;
 	}
 }

@@ -3,16 +3,30 @@ package bg.alexander.elevator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.simulator.Event;
+
 public class StateDoorsOpened implements State {
 	private final Logger log = LogManager.getLogger(this.getClass());
 	
 	@Override
-	public State transition(Context context) {
+	public State transitionToNext(Context context) {
 		log.info("Door opened");
+		TransitionState nextState = new StateDoorsClosing();
 		
-		State newState = new StateDoorsClosing();
-		context.setState(newState);
-		return newState;
+		Event doorsClosedEvent = new Event();
+		doorsClosedEvent.setMessage("Doors closed");
+		doorsClosedEvent.setAction((w)-> {
+			context.setState(new StateDoorsClosed());
+		});
+		doorsClosedEvent.setTime(30);
+		nextState.onTransition(doorsClosedEvent);
+		
+		context.addEvent(new Event(null,"Doors opening"));
+		context.addEvent(doorsClosedEvent);
+		
+		context.setState(nextState);
+		
+		return nextState;
 	}
 	
 	@Override

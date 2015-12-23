@@ -18,23 +18,25 @@ public class Simulator {
 	}
 	
 	public void addEvent(Event event){
-		log.info("Adding event "+event);
-		if(event.getTime()<= 0){
-			event.setTime(currentTime+1);
+		log.debug("Adding event "+event);
+		//immediate event
+		int scheduledTime = currentTime;
+		int executionTime = scheduledTime+1;
+		if(event.getTime()> 0){
+			executionTime=currentTime+1+event.getTime();
 		}
-		else{
-			event.setTime(currentTime+1+event.getTime());
-		}
+		event.setScheduledTime(scheduledTime);
+		event.setExecutionTime(executionTime);
 		events.add(event);
 	}
 	
 	public void run(){
 		for(currentTime = 0; currentTime< 100; currentTime += tickRate){
 			events.stream().filter(
-					(e)->e.getTime()==currentTime && !e.isCanceled())
+					(e)->e.getExecutionTime()==currentTime && !e.isCanceled())
 			.forEach((e)->e.takePlace());
 			
-			log.debug("Tick");
+			log.trace("Tick");
 			try{
 				Thread.sleep(tickTime);
 			}catch(InterruptedException e){
@@ -44,10 +46,15 @@ public class Simulator {
 		log.info("End for");
 	}
 	
+	public int getCurrentTime() {
+		return currentTime;
+	}
+	
 	public int getTickTime() {
 		return tickTime;
 	}
 	public void setTickTime(int tickTime) {
 		this.tickTime = tickTime;
 	}
+
 }

@@ -5,13 +5,22 @@ import org.apache.logging.log4j.Logger;
 
 import bg.alexander.simulator.Event;
 
-public class StateStopped implements State{
+public class StateDoorsClosed implements State{
 	private final Logger log = LogManager.getLogger(this.getClass());
 	
+	/**
+	 * <p>
+	 * 	{@inheritDoc}
+	 * </p>
+	 * <p>
+	 * 	Next state is StateDoorsOpening
+	 * </p>
+	 */
 	@Override
-	public State transition(Context context) {
-		State newState = new StateDoorsOpening();
-		context.setState(newState);
+	public State transitionToNext(Context context) {
+		TransitionState nextState = new StateDoorsOpening();
+		context.setState(nextState);
+		log.debug("Transitioning to "+nextState);
 		
 		Event doorsOpenedEvent = new Event();
 		doorsOpenedEvent.setMessage("Doors opened");
@@ -19,13 +28,16 @@ public class StateStopped implements State{
 			context.setState(new StateDoorsOpened());
 		});
 		doorsOpenedEvent.setTime(30);
+		nextState.onTransition(doorsOpenedEvent);
 		
+		context.addEvent(new Event(null,"Doors opening"));
 		context.addEvent(doorsOpenedEvent);
-		return newState;
+		
+		return nextState;
 	}
 	
 	@Override
 	public String toString(){
-		return "State - Stopped";
+		return "State - Doors closed";
 	}
 }

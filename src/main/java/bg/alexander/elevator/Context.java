@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import bg.alexander.simulator.Event;
-import bg.alexander.simulator.SimpleEvent;
 import bg.alexander.simulator.Simulator;
 
 public class Context {
@@ -14,7 +13,7 @@ public class Context {
 	
 	public Context(Simulator simulator) {
 		//initial state is stopped, doors closed
-		this.state = new StateStopped();
+		this.state = new StateDoorsClosed();
 		this.simulator = simulator;
 	}
 
@@ -33,6 +32,10 @@ public class Context {
 	
 	public State pressButton(){
 		log.info("Button pressed");
-		return state.transition(this);
+		return state.transitionToNext(this);
+	}
+
+	public int getCurrentTime() {
+		return simulator.getCurrentTime();
 	}
 }

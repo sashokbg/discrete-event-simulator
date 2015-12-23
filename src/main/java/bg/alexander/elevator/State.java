@@ -1,5 +1,11 @@
 package bg.alexander.elevator;
 
 public interface State {
-	public State transition(Context context);
+	/**
+	 * Transition to the next state
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public State transitionToNext(Context context);
 }
