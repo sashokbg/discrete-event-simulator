@@ -3,6 +3,8 @@ package bg.alexander.elevator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.State;
+import bg.alexander.elevator.states.StateDoorsClosed;
 import bg.alexander.simulator.Event;
 import bg.alexander.simulator.Simulator;
 

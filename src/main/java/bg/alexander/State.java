@@ -1,4 +1,6 @@
-package bg.alexander.elevator;
+package bg.alexander;
+
+import bg.alexander.elevator.Context;
 
 public interface State {
 	/**

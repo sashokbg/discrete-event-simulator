@@ -57,15 +57,15 @@ public class Event {
 			action.takePlace(time);
 		}
 	}
-	
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 	public String getMessage(){
 		return this.message;
 	}
-	
+
 	@Override
 	public String toString(){
 		return "Event ["+time+"] "+message;
@@ -79,10 +79,22 @@ public class Event {
 		this.executionTime = executionTime;
 	}
 	
+	/**
+	 * Absolute time value when the event was first scheduled
+	 * 
+	 * @see Simulator#addEvent(Event)
+	 * @param scheduledTime
+	 */
 	public int getScheduledTime() {
 		return scheduledTime;
 	}
 
+	/**
+	 * Absolute time value when the event will be actually executed
+	 * 
+	 * @see Simulator#addEvent(Event)
+	 * @param executionTime
+	 */
 	public int getExecutionTime() {
 		return executionTime;
 	}

@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bg.alexander.elevator.Context;
-import bg.alexander.elevator.StateDoorsOpened;
-import bg.alexander.elevator.StateDoorsClosed;
+import bg.alexander.elevator.states.StateDoorsClosed;
+import bg.alexander.elevator.states.StateDoorsOpened;
 import bg.alexander.simulator.Event;
 import bg.alexander.simulator.Simulator;
 
@@ -26,6 +26,33 @@ public class SimulatorTest {
 		simulator.setTickTime(1);
 	}
 
+	@Test
+	public void stringVsStringBuilder(){
+		String[] strings = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+		
+		System.out.println("Str concat start");
+		long start = System.currentTimeMillis();
+		for(int i =0; i < 999999; i++){
+			String result = "";
+			for(int j =0; j < 9; j++){
+				result+=strings[j];
+			}
+		}
+		long end=System.currentTimeMillis();
+		System.out.println("-- Result -- "+(end-start));
+		
+		System.out.println("StringBuilder start");
+		start = System.currentTimeMillis();
+		for(int i =0; i < 999999; i++){
+			StringBuilder resultb = new StringBuilder();
+			for(int j =0; j < 9; j++){
+				resultb.append(strings[j]);
+			}
+		}
+		end=System.currentTimeMillis();
+		System.out.println("-- Result -- "+(end-start));
+	}
+	
 	@Test
 	public void testSimpleTransitionOpening() throws InterruptedException {
 		Context ct = new Context(simulator);

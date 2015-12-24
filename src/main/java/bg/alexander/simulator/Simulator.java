@@ -18,10 +18,10 @@ public class Simulator {
 	}
 	
 	public void addEvent(Event event){
-		log.debug("Adding event "+event);
+		log.debug("Adding event "+event); 
 		//immediate event
-		int scheduledTime = currentTime;
-		int executionTime = scheduledTime+1;
+		int scheduledTime = currentTime; 
+		int executionTime = scheduledTime+1; 
 		if(event.getTime()> 0){
 			executionTime=currentTime+1+event.getTime();
 		}

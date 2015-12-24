@@ -1,8 +1,11 @@
-package bg.alexander.elevator;
+package bg.alexander.elevator.states;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.State;
+import bg.alexander.TransitionState;
+import bg.alexander.elevator.Context;
 import bg.alexander.simulator.Event;
 
 public class StateDoorsClosed implements State{

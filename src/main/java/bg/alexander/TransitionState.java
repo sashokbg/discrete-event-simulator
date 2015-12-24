@@ -1,4 +1,4 @@
-package bg.alexander.elevator;
+package bg.alexander;
 
 import bg.alexander.simulator.Event;
 
