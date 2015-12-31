@@ -5,10 +5,10 @@ import org.apache.logging.log4j.Logger;
 
 import bg.alexander.State;
 import bg.alexander.TransitionState;
-import bg.alexander.elevator.Context;
+import bg.alexander.simulator.SimulatorContext;
 import bg.alexander.simulator.Event;
 
-public class StateDoorsClosing implements TransitionState {
+public class DoorsClosing implements TransitionState {
 	private final Logger log = LogManager.getLogger(this.getClass());
 
 	//the future doors closed event, since doors opening/closing are transitional
@@ -16,9 +16,9 @@ public class StateDoorsClosing implements TransitionState {
 	
 	
 	@Override
-	public State transitionToNext(Context context) {
+	public State transitionToNext(SimulatorContext context) {
 		log.info("Doors closing -> doors opening");
-		State doorsOpeningState = new StateDoorsOpening();
+		State doorsOpeningState = new DoorsOpening();
 		context.setState(doorsOpeningState);
 		
 		doorsClosedEvent.cancel();
@@ -28,7 +28,7 @@ public class StateDoorsClosing implements TransitionState {
 		Event doorsOpenedEvent = new Event();
 		doorsOpenedEvent.setMessage("Doors closed");
 		doorsOpenedEvent.setAction((w)-> {
-			context.setState(new StateDoorsOpened());
+			context.setState(new DoorsOpened());
 		});
 		doorsOpenedEvent.setTime(elapsedTime);
 		

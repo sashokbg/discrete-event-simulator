@@ -9,9 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import bg.alexander.elevator.Context;
-import bg.alexander.elevator.states.StateDoorsClosed;
-import bg.alexander.elevator.states.StateDoorsOpened;
+import bg.alexander.elevator.states.DoorsClosed;
+import bg.alexander.elevator.states.DoorsOpened;
+import bg.alexander.simulator.SimulatorContext;
 import bg.alexander.simulator.Event;
 import bg.alexander.simulator.Simulator;
 
@@ -55,29 +55,29 @@ public class SimulatorTest {
 	
 	@Test
 	public void testSimpleTransitionOpening() throws InterruptedException {
-		Context ct = new Context(simulator);
-		assertEquals(ct.getState().getClass(), StateDoorsClosed.class);
+		SimulatorContext ct = new SimulatorContext(simulator);
+		assertEquals(ct.getState().getClass(), DoorsClosed.class);
 		simulator.addEvent(new Event((w) -> ct.pressButton(), "Press button"));
 
 		simulator.run();
-		assertEquals(ct.getState().getClass(), StateDoorsOpened.class);
+		assertEquals(ct.getState().getClass(), DoorsOpened.class);
 	}
 	
 	@Test
 	public void testSimpleTransitionClosing() throws InterruptedException {
-		Context ct = new Context(simulator);
-		ct.setState(new StateDoorsOpened());
-		assertEquals(ct.getState().getClass(), StateDoorsOpened.class);
+		SimulatorContext ct = new SimulatorContext(simulator);
+		ct.setState(new DoorsOpened());
+		assertEquals(ct.getState().getClass(), DoorsOpened.class);
 		simulator.addEvent(new Event((w) -> ct.pressButton(), "Press button"));
 
 		simulator.run();
-		assertEquals(ct.getState().getClass(), StateDoorsClosed.class);
+		assertEquals(ct.getState().getClass(), DoorsClosed.class);
 	}
 
 	@Test
 	public void testReverseTransition() throws InterruptedException {
-		Context ct = new Context(simulator);
-		assertEquals(ct.getState().getClass(), StateDoorsClosed.class);
+		SimulatorContext ct = new SimulatorContext(simulator);
+		assertEquals(ct.getState().getClass(), DoorsClosed.class);
 		simulator.addEvent(new Event((w) -> ct.pressButton(), "Press button"));
 
 		Event pressButtonEvent = new Event();
@@ -87,13 +87,13 @@ public class SimulatorTest {
 		simulator.addEvent(pressButtonEvent);
 
 		simulator.run();
-		assertEquals(ct.getState().getClass(), StateDoorsClosed.class);
+		assertEquals(ct.getState().getClass(), DoorsClosed.class);
 	}
 
 	@Test
 	public void testDoubleReverseTransition() throws InterruptedException {
-		Context ct = new Context(simulator);
-		assertEquals(ct.getState().getClass(), StateDoorsClosed.class);
+		SimulatorContext ct = new SimulatorContext(simulator);
+		assertEquals(ct.getState().getClass(), DoorsClosed.class);
 		// pressButtonEvent.setAction();
 		simulator.addEvent(new Event((w) -> ct.pressButton(), "Press button"));
 
@@ -110,7 +110,7 @@ public class SimulatorTest {
 		simulator.addEvent(pressButtonEvent);
 
 		simulator.run();
-		assertEquals(ct.getState().getClass(), StateDoorsOpened.class);
+		assertEquals(ct.getState().getClass(), DoorsOpened.class);
 	}
 
 	@Test

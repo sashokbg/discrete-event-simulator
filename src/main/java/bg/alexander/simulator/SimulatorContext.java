@@ -1,21 +1,20 @@
-package bg.alexander.elevator;
+package bg.alexander.simulator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.Context;
 import bg.alexander.State;
-import bg.alexander.elevator.states.StateDoorsClosed;
-import bg.alexander.simulator.Event;
-import bg.alexander.simulator.Simulator;
+import bg.alexander.elevator.states.DoorsClosed;
 
-public class Context {
+public class SimulatorContext implements Context {
 	private State state;
 	private final Logger log = LogManager.getLogger(this.getClass());
 	private Simulator simulator;
 	
-	public Context(Simulator simulator) {
+	public SimulatorContext(Simulator simulator) {
 		//initial state is stopped, doors closed
-		this.state = new StateDoorsClosed();
+		this.state = new DoorsClosed();
 		this.simulator = simulator;
 	}
 
