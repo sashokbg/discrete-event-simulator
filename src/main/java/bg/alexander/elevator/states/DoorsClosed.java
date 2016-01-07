@@ -3,9 +3,9 @@ package bg.alexander.elevator.states;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import bg.alexander.Context;
 import bg.alexander.State;
 import bg.alexander.TransitionState;
-import bg.alexander.simulator.SimulatorContext;
 import bg.alexander.simulator.Event;
 
 public class DoorsClosed implements State{
@@ -20,7 +20,7 @@ public class DoorsClosed implements State{
 	 * </p>
 	 */
 	@Override
-	public State transitionToNext(SimulatorContext context) {
+	public State transitionToNext(Context context) {
 		TransitionState nextState = new DoorsOpening();
 		context.setState(nextState);
 		log.debug("Transitioning to "+nextState);

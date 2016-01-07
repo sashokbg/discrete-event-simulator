@@ -1,5 +1,7 @@
 package bg.alexander.simulator.states;
 
-public interface SimulatorState {
+import bg.alexander.State;
+
+public interface SimulatorState extends State{
 
 }
