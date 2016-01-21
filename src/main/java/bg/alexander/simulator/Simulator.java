@@ -1,8 +1,6 @@
 package bg.alexander.simulator;
 
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
