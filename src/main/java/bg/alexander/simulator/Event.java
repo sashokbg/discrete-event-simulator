@@ -96,6 +96,7 @@ public class Event {
 
 	/**
 	 * Absolute time value when the event will be actually executed
+	 * This is usually set by the context that decides when to execute
 	 * 
 	 * @see Simulator#addEvent(Event)
 	 * @param executionTime
