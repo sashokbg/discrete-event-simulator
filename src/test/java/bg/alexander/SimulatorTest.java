@@ -38,7 +38,7 @@ public class SimulatorTest {
 		simulator.run();
 	}
 	
-	@Test
+//	@Test
 	public void testSimpleTransitionOpening() throws InterruptedException {
 		Elevator elevator = new Elevator();
 		assertEquals(elevator.getState().getClass(), DoorsClosed.class);
@@ -50,7 +50,7 @@ public class SimulatorTest {
 		assertEquals(elevator.getState().getClass(), DoorsOpened.class);
 	}
 	
-	@Test
+//	@Test
 	public void testSimpleTransitionClosing() throws InterruptedException {
 		Elevator elevator = new Elevator();
 		elevator.setContext(simulator);
@@ -62,7 +62,7 @@ public class SimulatorTest {
 		assertEquals(elevator.getState().getClass(), DoorsClosed.class);
 	}
 
-	@Test
+//	@Test
 	public void testReverseTransition() throws InterruptedException {
 		Elevator elevator = new Elevator();
 		elevator.setContext(simulator);
@@ -102,7 +102,7 @@ public class SimulatorTest {
 //		assertEquals(ct.getState().getClass(), DoorsOpened.class);
 //	}
 
-	@Test
+//	@Test
 	public void testSimulator() throws InterruptedException {
 		System.setOut(new PrintStream(outContent));
 		System.setErr(new PrintStream(errContent));

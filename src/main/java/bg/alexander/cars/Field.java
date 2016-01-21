@@ -18,7 +18,7 @@ public class Field implements Context{
 		if(position>=size){
 			Event carAdvance = new Event();
 			render();
-			carAdvance.setMessage("Car CRASHED - "+positionStr+" speed: "+car.getCurrentSpeed());
+			carAdvance.setMessage("Car CRASHED - "+positionStr+" speed: "+car.getCurrentSpeed()+"\r");
 			carAdvance.setAction((w)-> {
 				position += car.getCurrentSpeed();
 				car.setCrashed(true);
@@ -27,9 +27,9 @@ public class Field implements Context{
 		}
 		else{ //race
 			Event carAdvance = new Event();
-			carAdvance.setMessage("Car racing - "+positionStr+" speed: "+car.getCurrentSpeed());
+			carAdvance.setMessage("Car racing - "+positionStr+" speed: "+car.getCurrentSpeed()+"\r");
 			if(car.getCurrentSpeed() == car.getTopSpeed()){
-				carAdvance.setMessage("TOP SPEED -  "+positionStr+" "+position);
+				carAdvance.setMessage("TOP SPEED -  "+positionStr+" "+position+"\r");
 			}
 			carAdvance.setAction((w)-> {
 				car.accelarate();

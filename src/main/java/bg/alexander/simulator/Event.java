@@ -1,5 +1,8 @@
 package bg.alexander.simulator;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Event {
 	private int time;
 	private EventAction action;
@@ -7,6 +10,7 @@ public class Event {
 	private String message;
 	private int scheduledTime;
 	private int executionTime;
+	private Logger log = LogManager.getLogger(this.getClass());
 	
 	public Event() {
 		time = 0;
@@ -54,6 +58,7 @@ public class Event {
 	
 	public void takePlace(){
 		if(action!= null){
+			System.out.print(this);
 			action.takePlace(time);
 		}
 	}

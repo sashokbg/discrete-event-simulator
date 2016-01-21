@@ -33,7 +33,7 @@ public class Simulator implements Context{
 		event.setScheduledTime(scheduledTime);
 		event.setExecutionTime(executionTime);
 		events.add(event);
-		log.debug("Adding event "+event+" scheduled for ["+executionTime+"]"); 
+		log.trace("Adding event "+event+" scheduled for ["+executionTime+"]"); 
 	}
 	
 	public void run(){
