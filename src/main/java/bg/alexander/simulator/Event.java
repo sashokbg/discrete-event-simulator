@@ -30,6 +30,7 @@ public class Event {
 	}
 	
 	public void cancel(){
+		log.debug("Canceling event");
 		this.isCanceled = true;
 	}
 	
@@ -58,7 +59,7 @@ public class Event {
 	
 	public void takePlace(){
 		if(action!= null){
-			System.out.print(this);
+			log.debug(this);
 			action.takePlace(time);
 		}
 	}
