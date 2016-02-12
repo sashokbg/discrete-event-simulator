@@ -1,0 +1,10 @@
+apply plugin: 'eclipse-wtp'
+
+group = 'bg.alexander'
+version = '1.0'
+
+dependencies {
+   project(':simulator')
+   project(':simulator-elevator')
+   project(':simulator-car')
+}
