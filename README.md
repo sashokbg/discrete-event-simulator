@@ -16,4 +16,3 @@ Technologies
 Design Patterns
 
 - State Pattern
-- 
