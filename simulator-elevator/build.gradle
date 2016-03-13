@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+    mavenCentral()
+}
+
+group = 'bg.alexander'
+sourceCompatibility = 1.8
+version = '1.0'
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+
+dependencies {
+    compile 'commons-lang:commons-lang:2.6'
+    compile 'org.apache.logging.log4j:log4j-api:2.5'
+    compile 'org.apache.logging.log4j:log4j-core:2.5'
+    compile project(':simulator')
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

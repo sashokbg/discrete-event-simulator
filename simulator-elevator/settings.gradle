@@ -1,0 +1,2 @@
+include ':simulator'
+project(':simulator').projectDir = new File(settingsDir, '../simulator')
