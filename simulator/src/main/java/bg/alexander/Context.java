@@ -16,9 +16,9 @@ import bg.alexander.simulator.Simulator;
  *
  */
 public interface Context {
-	public void setState(State newState);
-	public State getState();
-	public void addEvent(Event event);
-	public int getCurrentTime();
-	public void setContext(Context context);
+	void setState(State newState);
+	State getState();
+	void addEvent(Event event);
+	int getCurrentTime();
+	void setContext(Context context);
 }
